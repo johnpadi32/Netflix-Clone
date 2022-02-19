@@ -13,7 +13,7 @@ class HomeViewController: UIViewController {
     
     //MARK: - Properties
     
-    let sectionTitles: [String] = ["Trending Movie", "Popular", "Trending Tv", "Upcoming Movies", "Top rated"]
+    let sectionTitles: [String] = ["Trending Movie", "Trending Tv", "Popular", "Upcoming Movies", "Top rated"]
     
     private let homeFeedView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
@@ -28,6 +28,7 @@ class HomeViewController: UIViewController {
         
         configureNavBar()
         configureTableView()
+        fetchData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -36,10 +37,35 @@ class HomeViewController: UIViewController {
         homeFeedView.frame = view.bounds
     }
     
+    //MARK: - API
+    
+    private func fetchData() {
+//        APIcaller.shared.getTrendingMoview { results in
+//            switch results {
+//            case .success(let movies):
+//                print(movies)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+//        APIcaller.shared.getTrendingTvs { results in
+//
+//        }
+//        APIcaller.shared.getUpcomingMovies { _ in
+//
+//        }
+//        APIcaller.shared.getPopularMovies { _ in
+//
+//        }
+        APIcaller.shared.getTopRatedMovies { _ in
+            
+        }
+    }
+    
     //MARK: - Helpers
     
     func configureNavBar() {
-       var image = UIImage(named: "netflixLogo")
+       var image = UIImage(named: "TMDBLogo")
         image = image?.withRenderingMode(.alwaysOriginal)
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: nil)
         navigationItem.rightBarButtonItems = [
@@ -83,9 +109,8 @@ extension HomeViewController: UITableViewDataSource {
         header.textLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
         header.textLabel?.frame = CGRect(x: header.bounds.origin.x + 20, y: header.bounds.origin.y, width: 100, height: header.bounds.height)
         header.textLabel?.textColor = .white
-        header.textLabel?.text = header.textLabel?.text?.lowercased()
+        header.textLabel?.text = header.textLabel?.text?.capitalizeFirstLetter()
     }
-    
 }
 
 //MARK: - UITableViewDatasource
