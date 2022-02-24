@@ -36,7 +36,7 @@ class HomeViewController: UIViewController {
         
         configureNavBar()
         configureTableView()
-        fetchData()
+//        fetchData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -47,9 +47,9 @@ class HomeViewController: UIViewController {
     
     //MARK: - API
     
-    private func fetchData() {
-
-    }
+//    private func fetchData() {
+//
+//    }
     
     //MARK: - Helpers
     
