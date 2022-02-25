@@ -36,7 +36,6 @@ class HomeViewController: UIViewController {
         
         configureNavBar()
         configureTableView()
-//        fetchData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -44,12 +43,6 @@ class HomeViewController: UIViewController {
         
         homeFeedView.frame = view.bounds
     }
-    
-    //MARK: - API
-    
-//    private func fetchData() {
-//
-//    }
     
     //MARK: - Helpers
     
