@@ -36,6 +36,7 @@ class HomeViewController: UIViewController {
         
         configureNavBar()
         configureTableView()
+        
     }
     
     override func viewDidLayoutSubviews() {

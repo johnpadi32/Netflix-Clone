@@ -27,6 +27,7 @@
 		48E92E7027C7551C00644FD6 /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E92E6F27C7551C00644FD6 /* TitleTableViewCell.swift */; };
 		48E92E7227C758D300644FD6 /* TitleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E92E7127C758D300644FD6 /* TitleViewModel.swift */; };
 		48E92E7427C8961F00644FD6 /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E92E7327C8961F00644FD6 /* SearchResultsController.swift */; };
+		48E92E7827C8C3F700644FD6 /* YoutubeSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E92E7727C8C3F700644FD6 /* YoutubeSearchResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		48E92E6F27C7551C00644FD6 /* TitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewCell.swift; sourceTree = "<group>"; };
 		48E92E7127C758D300644FD6 /* TitleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleViewModel.swift; sourceTree = "<group>"; };
 		48E92E7327C8961F00644FD6 /* SearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
+		48E92E7727C8C3F700644FD6 /* YoutubeSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeSearchResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				48E92E6027C0C2E000644FD6 /* Title.swift */,
+				48E92E7727C8C3F700644FD6 /* YoutubeSearchResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				48E92E3927BF2ADE00644FD6 /* SceneDelegate.swift in Sources */,
 				48E92E5427BF2FB400644FD6 /* DownloadViewController.swift in Sources */,
 				48E92E6527C0D13E00644FD6 /* Extensions.swift in Sources */,
+				48E92E7827C8C3F700644FD6 /* YoutubeSearchResponse.swift in Sources */,
 				48E92E5027BF2F7700644FD6 /* UpcommingViewController.swift in Sources */,
 				48E92E4B27BF2EC500644FD6 /* MainTabBarController.swift in Sources */,
 				48E92E6127C0C2E000644FD6 /* Title.swift in Sources */,
