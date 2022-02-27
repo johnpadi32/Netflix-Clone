@@ -84,7 +84,7 @@ extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? CollectionViewTableViewCell else { return UITableViewCell()}
-       
+        cell.delegate = self
         switch indexPath.section {
         case Section.TrendingMovies.rawValue:
             APIcaller.shared.getTrendingMoview { result in
@@ -174,5 +174,17 @@ extension HomeViewController: UITableViewDelegate {
         let offset = scrollView.contentOffset.y + defaultOffSet
         
         navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
+    }
+}
+
+
+extension HomeViewController: CollectionViewTableViewCellDelegate {
+    func collectionViewTableViewDidTapCell(_ cell: CollectionViewTableViewCell, viewModel: TitlePreviewViewModel) {
+        DispatchQueue.main.async { [weak self] in
+            let vc = TitlePreviewController()
+            vc.configure(with: viewModel)
+            self?.navigationController?.pushViewController(vc, animated: true)
+        }
+
     }
 }

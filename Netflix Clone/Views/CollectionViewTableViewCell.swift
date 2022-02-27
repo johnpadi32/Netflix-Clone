@@ -7,11 +7,17 @@
 
 import UIKit
 
+protocol CollectionViewTableViewCellDelegate: AnyObject {
+    func collectionViewTableViewDidTapCell(_ cell: CollectionViewTableViewCell, viewModel: TitlePreviewViewModel)
+}
+
 class CollectionViewTableViewCell: UITableViewCell {
     
     //MARK: - Properties
     
     private var title: [Title] = [Title]()
+    
+    weak var delegate: CollectionViewTableViewCellDelegate?
         
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -74,6 +80,11 @@ extension CollectionViewTableViewCell: UICollectionViewDataSource {
         
         return cell
     }
+}
+
+//MARK: - UICollectionViewDelegate
+
+extension CollectionViewTableViewCell: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
@@ -81,19 +92,18 @@ extension CollectionViewTableViewCell: UICollectionViewDataSource {
         let title = title[indexPath.row]
         guard let titleName = title.original_title ?? title.title else { return }
         
-        APIcaller.shared.getMovie(with: titleName + " trailer") { result in
+        APIcaller.shared.getMovie(with: titleName + " trailer") { [weak self ] result in
             switch result {
             case .success(let videoElement):
-                print(videoElement.id)
+                
+                let title = self?.title[indexPath.row]
+                guard let titleOverview = title?.overview else { return }
+                let viewMdeol = TitlePreviewViewModel(title: titleName, youtubeView: videoElement, titleOverview: titleOverview)
+                guard let striongSelf = self else { return }
+                self?.delegate?.collectionViewTableViewDidTapCell(striongSelf, viewModel: viewMdeol)
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
     }
-}
-
-//MARK: - UICollectionViewDelegate
-
-extension CollectionViewTableViewCell: UICollectionViewDelegate {
-    
 }
