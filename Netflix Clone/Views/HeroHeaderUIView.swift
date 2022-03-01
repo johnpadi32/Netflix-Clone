@@ -55,16 +55,17 @@ class HeroHeaderUIView: UIView {
         super.init(frame: frame)
         
         addSubview(heroImageView)
+        heroImageView.fillSuperview()
         addGradient()
         addSubview(playButton)
         addSubview(downloadButton)
         applyConstraints()
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        heroImageView.frame = bounds
-    }
+//    override func layoutSubviews() {
+//        super.layoutSubviews()
+//        heroImageView.frame = bounds
+//    }
     
     required init?(coder: NSCoder) {
         fatalError()
@@ -87,5 +88,11 @@ class HeroHeaderUIView: UIView {
         ]
         NSLayoutConstraint.activate(downloadButtonConstraints)
         NSLayoutConstraint.activate(playButtonConstraints)
+    }
+    
+    public func configure(with model: TitleViewModel) {
+        guard let url = URL(string: "https://image.tmdb.org/t/p/w500/\(model.posterURL)") else { return }
+
+        heroImageView.sd_setImage(with: url, completed: nil)
     }
 }

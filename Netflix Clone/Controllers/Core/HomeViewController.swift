@@ -23,6 +23,10 @@ class HomeViewController: UIViewController {
     
     let sectionTitles: [String] = ["Trending Movie", "Trending Tv", "Popular", "Upcoming Movies", "Top rated"]
     
+    private var randomTrendingMoview: Title?
+    
+    private var headerView: HeroHeaderUIView?
+    
     private let homeFeedView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
         table.register(CollectionViewTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
@@ -36,6 +40,7 @@ class HomeViewController: UIViewController {
         
         configureNavBar()
         configureTableView()
+        configureHeroHeaderView()
         
     }
     
@@ -65,8 +70,21 @@ class HomeViewController: UIViewController {
         homeFeedView.delegate = self
         homeFeedView.dataSource = self
         
-        let headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
+        headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 480))
         homeFeedView.tableHeaderView = headerView
+    }
+    
+    func configureHeroHeaderView() {
+        APIcaller.shared.getPopularMovies { [weak self] result in
+            switch result {
+            case .success(let title):
+                let selectedTile = title.randomElement()
+                self?.randomTrendingMoview = selectedTile
+                self?.headerView?.configure(with: TitleViewModel(titleName: selectedTile?.original_title ?? "", posterURL: selectedTile?.poster_path ?? "", overview: selectedTile?.overview ?? ""))
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 }
 
